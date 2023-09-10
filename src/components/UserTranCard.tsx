@@ -6,8 +6,8 @@ interface userTranProps {
 
 const UserTranCard = (props: userTranProps) => {
   return (
-    <div className="w-[60%] break-normal">
-      <h1 className="text-gray-500">Your Translation: {props.translation}</h1>
+    <div className="break-norma h-auto w-[60%]">
+      <h1 className=" text-gray-500">Your Translation: {props.translation}</h1>
     </div>
   );
 };

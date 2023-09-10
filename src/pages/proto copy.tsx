@@ -4,7 +4,6 @@ import { IoMdSend } from "react-icons/io";
 import FbCard from "~/components/FbCard";
 import OgLangCard from "~/components/OgLangCard";
 import UserTranCard from "~/components/UserTranCard";
-import { UserInputBar } from "~/components/userInputBar";
 
 export default function Proto() {
   return (
@@ -58,7 +57,9 @@ export default function Proto() {
             skills={["vocab", "punctuation", "grammar"]}
           />
         </div>
-        <UserInputBar />
+        <div className="flex h-[10%] items-center justify-center border-t border-t-gray-400 bg-white">
+          <div className=" h-[60%] w-[90%] rounded-md border border-gray-500"></div>
+        </div>
       </div>
     </div>
   );
