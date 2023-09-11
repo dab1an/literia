@@ -2,10 +2,14 @@ import React, { useState } from "react";
 
 import { IoMdSend } from "react-icons/io";
 
-export const UserInputBar = () => {
+interface UserInputBarProps {
+  onTranslationReceived: (translation: string) => void;
+}
+
+export const UserInputBar: React.FC<UserInputBarProps> = ({
+  onTranslationReceived,
+}) => {
   const [userInput, setUserInput] = useState("");
-  const [responseData, setResponsedata] = useState("");
-  async function handleSubmit(e: React.FormEvent) {}
 
   async function submitInput(e: React.FormEvent) {
     e.preventDefault();
@@ -17,7 +21,7 @@ export const UserInputBar = () => {
 
     const data = await res.json();
     console.log(data);
-    setResponsedata(data.userInput);
+    onTranslationReceived(data.translation);
   }
 
   return (
@@ -25,7 +29,7 @@ export const UserInputBar = () => {
       <form
         action=""
         className="flex h-full w-full items-center justify-center"
-        onSubmit={handleSubmit}
+        onSubmit={submitInput}
       >
         <input
           type="text"
@@ -45,9 +49,9 @@ export const UserInputBar = () => {
         </button>
       </form>
 
-      <div className="h-[60%] w-[90%] rounded-md border border-gray-500">
+      {/* <div className="h-[60%] w-[90%] rounded-md border border-gray-500">
         Response: <p>{responseData}</p>
-      </div>
+      </div> */}
     </div>
   );
 };

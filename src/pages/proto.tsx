@@ -5,8 +5,17 @@ import FbCard from "~/components/FbCard";
 import OgLangCard from "~/components/OgLangCard";
 import UserTranCard from "~/components/UserTranCard";
 import { UserInputBar } from "~/components/userInputBar";
+import { useStyleRegistry } from "styled-jsx";
+import { useState } from "react";
 
 export default function Proto() {
+  const [translation, setTranslation] = useState<string[]>([]);
+
+  const addTranslation = (translation: string) => {
+    //adding new translation to existing array
+    setTranslation((prevTranslation) => [...prevTranslation, translation]);
+  };
+
   return (
     <div className="flex h-screen w-screen  bg-blue-500">
       <div className="lg: hidden w-[225px] flex-shrink-0 flex-col  items-center justify-between border-r border-r-gray-400 bg-charcoal text-white lg:flex">
@@ -35,8 +44,14 @@ export default function Proto() {
             fbMsg="This is an example message"
             skills={["vocab", "punctuation", "grammar"]}
           />
+
+          {translation.map((translation, index) => (
+            <UserTranCard key={index} translation={translation} />
+          ))}
         </div>
-        <UserInputBar />
+        //passing addTranslation as prop to UserInputBar, when oTR is called,
+        addTranslation is invoked
+        <UserInputBar onTranslationReceived={addTranslation} />
       </div>
     </div>
   );
