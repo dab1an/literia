@@ -35,28 +35,6 @@ export default function Proto() {
             fbMsg="This is an example message"
             skills={["vocab", "punctuation", "grammar"]}
           />
-          <OgLangCard sentence=" Example sentence being used for the purpose of testing UI" />
-
-          <UserTranCard
-            translation="Oración de ejemplo utilizada con el fin de
-    probar la interfaz de usuario"
-          />
-
-          <FbCard
-            fbMsg="This is an example message"
-            skills={["vocab", "punctuation", "grammar"]}
-          />
-          <OgLangCard sentence=" Example sentence being used for the purpose of testing UI" />
-
-          <UserTranCard
-            translation="Oración de ejemplo utilizada con el fin de
-    probar la interfaz de usuario"
-          />
-
-          <FbCard
-            fbMsg="This is an example message"
-            skills={["vocab", "punctuation", "grammar"]}
-          />
         </div>
         <UserInputBar />
       </div>
