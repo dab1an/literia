@@ -1,9 +1,8 @@
 import { Gi3DMeeple } from "react-icons/gi";
 import { FaUserCircle } from "react-icons/fa";
-import { IoMdSend } from "react-icons/io";
-import FbCard from "~/components/FbCard";
-import OgLangCard from "~/components/OgLangCard";
-import UserTranCard from "~/components/UserTranCard";
+import FbCard from "../components/fbCard";
+import OgLangCard from "~/components/ogLangCard";
+import UserTranCard from "~/components/userTranCard";
 import { UserInputBar } from "~/components/userInputBar";
 import { useStyleRegistry } from "styled-jsx";
 import { useState } from "react";
@@ -34,23 +33,20 @@ export default function Proto() {
       <div className="flex w-full flex-col ">
         <div className="flex h-[90%] flex-col items-center gap-4 overflow-y-scroll bg-white pb-6 pt-4 scrollbar scrollbar-track-slate-200 scrollbar-thumb-cerulean">
           <OgLangCard sentence=" Example sentence being used for the purpose of testing UI" />
-
           <UserTranCard
             translation="Oración de ejemplo utilizada con el fin de
               probar la interfaz de usuario"
           />
-
           <FbCard
             fbMsg="This is an example message"
             skills={["vocab", "punctuation", "grammar"]}
           />
-
           {translation.map((translation, index) => (
             <UserTranCard key={index} translation={translation} />
           ))}
         </div>
-        //passing addTranslation as prop to UserInputBar, when oTR is called,
-        addTranslation is invoked
+
+        {/*passing addTranslation as prop to UserInputBar, when oTR is called, addTranslation is invoked*/}
         <UserInputBar onTranslationReceived={addTranslation} />
       </div>
     </div>
