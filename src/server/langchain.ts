@@ -6,6 +6,7 @@ import { zodToJsonSchema } from "zod-to-json-schema";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { PromptTemplate } from "langchain/prompts";
 import { JsonOutputFunctionsParser } from "langchain/output_parsers";
+import { TranslationFeedbackBody } from "~/schemas/translationSchemas";
 
 const TEMPLATE = `Your job is to help people improve at language. Given a sentence in {original_lang} and a sentence in {translated_lang}, you will check
 whether the translation is correct, and give feedback if applicable. 
@@ -41,17 +42,14 @@ const functionCallingModel = model.bind({
 
 const prompt = PromptTemplate.fromTemplate(TEMPLATE);
 
-export const getTranslationFeedback = async () => {
+export const getTranslationFeedback = async (
+  params: TranslationFeedbackBody,
+) => {
   const chain = prompt
     .pipe(functionCallingModel)
     .pipe(new JsonOutputFunctionsParser());
 
-  const result = await chain.invoke({
-    original_lang: "Spanish",
-    translated_lang: "English",
-    original_sentence: "Hola, como estas?",
-    translated_sentence: "Hello, i'm doing okay?",
-  });
+  const result = await chain.invoke(params);
 
   return result;
 };
