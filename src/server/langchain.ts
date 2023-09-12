@@ -1,5 +1,3 @@
-import { NextRequest, NextResponse } from "next/server";
-
 import { z } from "zod";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
@@ -53,3 +51,11 @@ export const getTranslationFeedback = async (
 
   return result;
 };
+
+// Route: POST /api/ai/translationFeedback
+// {
+//     "original_lang": "Spanish",
+//     "translated_lang": "English",
+//     "original_sentence": "¿Que color es este?",
+//     "translated_sentence": "What color is that?"
+//}
