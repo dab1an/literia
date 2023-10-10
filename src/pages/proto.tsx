@@ -9,6 +9,18 @@ import { useState } from "react";
 
 export default function Proto() {
   const [translation, setTranslation] = useState<string[]>([]);
+  const [langSentence, setLangSentence] = useState("");
+
+  // async function getLang() {
+  //   const res = await fetch("/api/ai/sentenceCreation", {
+  //     method: "POST",
+  //     body: JSON.stringify({ sentence_lang: "Spanish" }),
+  //     headers: { "Content-Type": "application/json" },
+  //   });
+
+  //   const data = await res.json();
+  //   setLangSentence(data);
+  // }
 
   const addTranslation = (translation: string) => {
     //adding new translation to existing array

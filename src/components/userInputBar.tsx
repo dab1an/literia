@@ -13,15 +13,18 @@ export const UserInputBar: React.FC<UserInputBarProps> = ({
 
   async function submitInput(e: React.FormEvent) {
     e.preventDefault();
-    const res = await fetch("/api", {
-      method: "POST",
-      body: JSON.stringify({ userInput }),
-      headers: { "Content-Type": "application/json" },
-    });
+    onTranslationReceived(userInput);
+    setUserInput("");
+    // e.preventDefault();
+    // const res = await fetch("/api", {
+    //   method: "POST",
+    //   body: JSON.stringify({ userInput }),
+    //   headers: { "Content-Type": "application/json" },
+    // });
 
-    const data = await res.json();
-    console.log(data);
-    onTranslationReceived(data.translation);
+    // const data = await res.json();
+    // console.log(data);
+    // onTranslationReceived(data.translation);
   }
 
   return (
