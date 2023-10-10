@@ -11,10 +11,11 @@ export const UserInputBar: React.FC<UserInputBarProps> = ({
 }) => {
   const [userInput, setUserInput] = useState("");
 
-  async function submitInput(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     onTranslationReceived(userInput);
     setUserInput("");
+
     // e.preventDefault();
     // const res = await fetch("/api", {
     //   method: "POST",
@@ -32,7 +33,7 @@ export const UserInputBar: React.FC<UserInputBarProps> = ({
       <form
         action=""
         className="flex h-full w-full items-center justify-center"
-        onSubmit={submitInput}
+        onSubmit={handleSubmit}
       >
         <input
           type="text"
@@ -47,7 +48,7 @@ export const UserInputBar: React.FC<UserInputBarProps> = ({
           <IoMdSend
             size={45}
             className="pl-2 text-cerulean hover:text-charcoal"
-            onClick={submitInput}
+            onClick={handleSubmit}
           />
         </button>
       </form>
