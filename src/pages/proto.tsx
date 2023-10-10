@@ -9,11 +9,53 @@ import { useState } from "react";
 
 export default function Proto() {
   const [translation, setTranslation] = useState<string[]>([]);
+  const [fbMsg, setFbMsg] = useState<string[]>([]);
+  const [langSentence, setLangSentence] = useState("");
+  const [improvements, setImprovements] = useState<[]>([]);
+
+  // async function getLang() {
+  //   const res = await fetch("/api/ai/sentenceCreation", {
+  //     method: "POST",
+  //     body: JSON.stringify({ sentence_lang: "Spanish" }),
+  //     headers: { "Content-Type": "application/json" },
+  //   });
+
+  //   const data = await res.json();
+  //   setLangSentence(data);
+  // }
 
   const addTranslation = (translation: string) => {
     //adding new translation to existing array
     setTranslation((prevTranslation) => [...prevTranslation, translation]);
+    processTranslation(translation);
   };
+
+  const addFbMsg = (fbMsg: string) => {
+    //adding new translation to existing array
+    setFbMsg((prevFbMsg) => [...prevFbMsg, fbMsg]);
+  };
+
+  // const addImprovements = (improvements: []) => {
+  //   setImprovements((prevImprovements) => [...prevImprovements, improvements]);
+  // }
+
+  async function processTranslation(translation: string) {
+    const res = await fetch("/api/ai/translationFeedback", {
+      method: "POST",
+      body: JSON.stringify({
+        original_lang: "Spanish",
+        translated_lang: "English",
+        original_sentence:
+          "Oración de ejemplo utilizada con el fin de probar la interfaz de usuario",
+        translated_sentence: translation,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const data = await res.json();
+    console.log(data);
+    addFbMsg(data.feedback);
+  }
 
   return (
     <div className="flex h-screen w-screen  bg-blue-500">
@@ -43,6 +85,14 @@ export default function Proto() {
           />
           {translation.map((translation, index) => (
             <UserTranCard key={index} translation={translation} />
+          ))}
+
+          {fbMsg.map((fbMsg, index) => (
+            <FbCard
+              key={index}
+              fbMsg={fbMsg}
+              skills={["Placeholder", "Array"]}
+            />
           ))}
         </div>
 
