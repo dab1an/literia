@@ -1,11 +1,15 @@
 import Head from "next/head";
 import Link from "next/link";
+import Nav from "~/components/home/Nav";
+import Hero from "~/components/home/Hero";
 
 export default function Home() {
   return (
     <div>
-      <h1>Home Page</h1>
-      <Link href={"/proto"}>Prototype</Link>
+      <div className="flex flex-col items-center">
+        <Nav />
+        <Hero />
+      </div>
     </div>
   );
 }
